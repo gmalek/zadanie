@@ -22,6 +22,7 @@ class Expense(models.Model):
     amount = models.DecimalField(max_digits=8, decimal_places=2)
 
     date = models.DateField(default=datetime.date.today, db_index=True)
+    date_to = models.DateField(default=datetime.date.today, db_index=True)
 
     def __str__(self):
         return f'{self.date} {self.name} {self.amount}'
