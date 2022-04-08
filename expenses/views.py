@@ -17,6 +17,7 @@ class ExpenseListView(ListView):
             name = form.cleaned_data.get('name', '').strip()
             date = form.cleaned_data.get('date', '')
             date_to = form.cleaned_data.get('date_to', '')
+            category = form.cleaned_data.get('category', '')
             if name:
                 queryset = queryset.filter(name__icontains=name)
             if date and date_to:
@@ -25,7 +26,8 @@ class ExpenseListView(ListView):
                 queryset = queryset.filter(date=date)
             elif date_to:
                 queryset = queryset.filter(date=date_to)
-
+            if category:
+                queryset = queryset.filter(category=category)
         return super().get_context_data(
             form=form,
             object_list=queryset,
